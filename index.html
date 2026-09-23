@@ -291,7 +291,7 @@ const FIX={plotSqm:86330,gfaSqm:89899,clubSqm:4000,units:[12,22,12],sqm:[3000,15
 FIX.plot=FIX.plotSqm*SQM;FIX.gfaMax=FIX.gfaSqm*SQM;FIX.club=FIX.clubSqm*SQM;
 FIX.tierGFA=FIX.units.map((u,i)=>u*FIX.sqm[i]*SQM);FIX.resGFA=FIX.tierGFA.reduce((a,b)=>a+b,0);
 const BASE={land:1080,lfee:0,rent:0,ratio:1.00,p2:6000,pk1:6500/6000,pk3:5500/6000,rate:1500,cont:0.10,extras:0,
-  com:0.02,mkt:0.025,ovh:15000000,design:9,enab:3,build:30,ho:3,launch:6,sales:30,spike:0.10,down:0.20,hand:0.40,ph:0,
+  com:0.04,mkt:0.02,ovh:15000000,design:9,enab:3,build:30,ho:3,launch:6,sales:30,spike:0.10,down:0.20,hand:0.40,ph:0,
   dep:0.30,depLock:0,debt:1,ltv:0.70,lrate:0.075,ltc:0.60,crate:0.08};
 function irrM(cf){let lo=-0.95,hi=1.0;const f=r=>{let s=0;for(let k=0;k<cf.length;k++)s+=cf[k]/Math.pow(1+r,k);return s};
   if(f(lo)<0)return -1; if(f(hi)>0)return Math.pow(1+hi,12)-1;
