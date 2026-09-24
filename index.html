@@ -130,6 +130,7 @@ footer p{max-width:120ch;margin:0 0 8px}
 .fix li .imp{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
 .pill{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:10px;background:var(--teal-soft);color:var(--navy2);margin-left:6px;vertical-align:1px}
 .presetnote{font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.4}
+.wfg{margin-top:8px;font-size:12px}.wfh,.wfr{display:grid;grid-template-columns:52px 1fr 1fr;gap:8px;align-items:center;padding:3px 0}.wfh{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}.wfr label{display:flex;align-items:center;gap:4px;color:var(--muted)}.wfr input{width:100%;min-width:0;font:inherit;font-size:13px;font-weight:700;color:var(--ink);background:var(--panel);border:1px solid var(--line);padding:5px 6px;border-radius:2px}.wfr input:focus{outline:2px solid var(--teal);outline-offset:0}.wfr .mut{color:var(--muted);font-size:11px}#wf_desc{margin-top:6px}
 </style>
 </head>
 <body>
@@ -164,7 +165,7 @@ footer p{max-width:120ch;margin:0 0 8px}
 <section id="summary">
   <div class="eyebrow">Summary</div>
   <h2>A 21-acre compound in Al Sufouh 2, rebuilt as 46 estates around a clubhouse</h2>
-  <p class="lede">Monthly cash-flow model with the construction programme, sales absorption, Dubai escrow rules, land and construction debt, and our standard LP / GP waterfall. <b>Every slider moves the whole model</b>; the outlined cells in the sensitivity grids track the current case.</p>
+  <p class="lede">Monthly cash-flow model with the construction programme, sales absorption, Dubai escrow rules, land and construction debt, and a deal structure you set yourself, from our house LP / GP waterfall to a single investor with no GP. <b>Every slider moves the whole model</b>; the outlined cells in the sensitivity grids track the current case.</p>
   <div class="verdict" id="verdict"></div>
 </section>
 
@@ -247,7 +248,8 @@ footer p{max-width:120ch;margin:0 0 8px}
     <div class="panel"><h3>Uses and sources</h3><div class="tw"><table id="t_uses" class="wrapok"></table></div>
     <p class="note">Costs exclude VAT: the first sale of new residential property is zero-rated and input VAT is recoverable; the recovery lag is not modelled. Land is VAT exempt.</p></div>
     <div class="panel"><h3>Returns and LP / GP split</h3><div class="tw"><table id="t_ret" class="wrapok"></table></div>
-    <p class="note">House waterfall on equity: 8% a year preferred return to the LP, the band from 8 to 10% to the GP, then 80 / 20 to a 25% IRR and 70 / 30 above; hurdles accrue monthly on actual contributions and distributions. GP fees (1% acquisition advisory on land and DLD, 1% disposition on GDV) are project costs in the GP economics. Corporate tax at 9% is shown for reference; the headline figures are pre-tax, as in our other models.</p></div>
+    <p class="note" id="n_ret"></p>
+    <p class="note">The deal structure is set in the inputs panel: pick a preset or type your own bands. Distributions return capital first, pro rata, then run through up to three hurdle bands and a final band above the last hurdle; each band has its own GP share, from 0% (all to equity) to 100% (a GP catch-up). Hurdles are IRRs on project equity, accrued monthly on actual contributions and distributions. GP fees are project costs, so they reduce project profit before the waterfall. House terms: 8% preferred to the LP, the band from 8 to 10% to the GP, then 80 / 20 to a 25% IRR and 70 / 30 above, with 1% acquisition and 1% disposition fees. Corporate tax at 9% is shown for reference; the headline figures are pre-tax, as in our other models.</p></div>
   </div>
 </section>
 
@@ -298,9 +300,9 @@ footer p{max-width:120ch;margin:0 0 8px}
 </section>
 
 <footer>
-  <p><b>Method.</b> Monthly model, month 0 is the land transfer. Land: price per sq ft of plot times 929,247 sq ft, plus 4% DLD and land brokerage (base 0%), plus the GP acquisition advisory fee of 1% of land and DLD. Existing rent, if entered, is collected until vacant possession. Demolition (15 per sq ft of plot) is paid evenly from vacant possession to construction start. Construction budget: residential GFA at one rate including fit-out and furniture (base 1,500 per sq ft), marketed area above GFA at 50% of that rate, clubhouse 43,056 sq ft at 900, infrastructure 45 and landscaping 35 per sq ft of plot, contingency on buildings, or on all works with the additional cost lines switched on; paid on a sine S-curve with a 10% advance at start and 10% retention, half released at handover and half 12 months after completion. Design 6% and project management 5% of buildings and clubhouse; developer overhead per year until handover. Additional cost lines (switch, off in the base case): authority fees and connections 3% (40% at permit, 60% at 60% progress), RERA, escrow and legal AED 10M before launch, defects reserve 1% six months after handover, 20 per sq ft a year on unsold marketed area after handover. Sales: a share in the launch month, then evenly to the end of the sales period, all tiers pro rata; broker commission and the 1% GP disposition fee at sale; marketing 35% around launch and the rest evenly. Buyer payments: deposit at sale, construction share evenly to the month before handover, handover share, and any post-handover share over 24 months. Escrow: at launch the developer posts the deposit in cash (default 30% of the construction budget, less work already done); the deposit either funds construction or stays locked to handover; any shortfall is met by equity; no distributions before handover; 5% of collections locked for 12 months after handover; future costs are reserved before each distribution. Debt: land loan at a share of the land price in month 0, construction facility drawn only when escrow cash runs short, up to its share of construction cost incurred, 1% arrangement fees, simple interest accrued and repaid with principal from free cash after handover. IRR: annualised from monthly equity flows. The engine was recomputed independently in Python and agrees to the dirham, levered and unlevered.</p>
+  <p><b>Method.</b> Monthly model, month 0 is the land transfer. Land: price per sq ft of plot times 929,247 sq ft, plus 4% DLD and land brokerage (base 0%), plus any GP acquisition fee on land and DLD (1% under house terms). Existing rent, if entered, is collected until vacant possession. Demolition (15 per sq ft of plot) is paid evenly from vacant possession to construction start. Construction budget: residential GFA at one rate including fit-out and furniture (base 1,500 per sq ft), marketed area above GFA at 50% of that rate, clubhouse 43,056 sq ft at 900, infrastructure 45 and landscaping 35 per sq ft of plot, contingency on buildings, or on all works with the additional cost lines switched on; paid on a sine S-curve with a 10% advance at start and 10% retention, half released at handover and half 12 months after completion. Design 6% and project management 5% of buildings and clubhouse; developer overhead per year until handover. Additional cost lines (switch, off in the base case): authority fees and connections 3% (40% at permit, 60% at 60% progress), RERA, escrow and legal AED 10M before launch, defects reserve 1% six months after handover, 20 per sq ft a year on unsold marketed area after handover. Sales: a share in the launch month, then evenly to the end of the sales period, all tiers pro rata; broker commission and any GP disposition fee (1% under house terms) at sale; marketing 35% around launch and the rest evenly. Buyer payments: deposit at sale, construction share evenly to the month before handover, handover share, and any post-handover share over 24 months. Escrow: at launch the developer posts the deposit in cash (default 30% of the construction budget, less work already done); the deposit either funds construction or stays locked to handover; any shortfall is met by equity; no distributions before handover; 5% of collections locked for 12 months after handover; future costs are reserved before each distribution. Debt: land loan at a share of the land price in month 0, construction facility drawn only when escrow cash runs short, up to its share of construction cost incurred, 1% arrangement fees, simple interest accrued and repaid with principal from free cash after handover. IRR: annualised from monthly equity flows. The engine was recomputed independently in Python and agrees to the dirham, levered and unlevered.</p>
   <p><b>Sources.</b> Palm &amp; Peak underwriting inputs for Cordoba Residence (2026). Bayut Dubai Transactions (DLD register), Como Residences, Six Senses Residences The Palm, Al Barari and Jumeirah Golf Estates, 12 months to 23 September 2026. Propsearch.ae, Como Residences. Gulf News, 10 December 2024 (Six Senses villa, AED 130M). Khaleej Times, July 2026 (Jumeirah Golf Estates, AED 110M) and May 2025 (Al Barari Villa Y3, AED 107M). Property Finder, Six Senses villa listings, 23 September 2026. Engel &amp; Völkers, Construction Cost in Dubai 2026. Bayut and Dubai MLS pages on Cordoba Residence, viewed 23 September 2026. Palm &amp; Peak villa development underwriting, Sobha Hartland and Palm Jumeirah (August and September 2026). Law No. 26 of 2007 (Dubai tenancy), Article 25; Law No. 8 of 2007 (escrow). Anything not marked as sourced is our assumption and is there to be challenged.</p>
-  <p>Palm &amp; Peak · prepared 23 September 2026 · AED · model v2.0 · Illustrative, not an offer. For the intended recipient only.</p>
+  <p>Palm &amp; Peak · prepared 23 September 2026 · AED · model v2.1 · Illustrative, not an offer. For the intended recipient only.</p>
 </footer>
 </div></div></main>
 <script>
@@ -308,14 +310,19 @@ footer p{max-width:120ch;margin:0 0 8px}
 const SQM=10.7639;
 const FIX={plotSqm:86330,gfaSqm:89899,clubSqm:4000,units:[12,22,12],sqm:[3000,1550,1100],
   names:['Grand Estates','The Estates','The Residences'],beds:['8-10 bed','6-7 bed','5-6 bed'],
-  rk:[1,1,1],demo:15,infra:45,land:35,clubRate:900,dld:0.04,gpAcq:0.01,gpDisp:0.01,
+  rk:[1,1,1],demo:15,infra:45,land:35,clubRate:900,dld:0.04,
   design:0.06,pm:0.05,xK:0.50,auth:0.03,rera:10000000,dlp:0.01,unsoldSC:20,
   adv:0.10,ret:0.10,escrowRet:0.05,phMonths:24,arr:0.01,taxRate:0.09,taxFree:375000,launchMkt:0.35};
 FIX.plot=FIX.plotSqm*SQM;FIX.gfaMax=FIX.gfaSqm*SQM;FIX.club=FIX.clubSqm*SQM;
 FIX.tierGFA=FIX.units.map((u,i)=>u*FIX.sqm[i]*SQM);FIX.resGFA=FIX.tierGFA.reduce((a,b)=>a+b,0);
 const BASE={land:1080,lfee:0,rent:0,ratio:1.00,p2:6000,pk1:6500/6000,pk3:5500/6000,rate:1500,cont:0.10,extras:0,
   com:0.04,mkt:0.02,ovh:15000000,design:9,enab:3,build:30,ho:3,launch:6,sales:30,spike:0.10,down:0.20,hand:0.40,ph:0,
-  dep:0.30,depLock:0,debt:1,ltv:0.70,lrate:0.075,ltc:0.60,crate:0.08};
+  dep:0.30,depLock:0,debt:1,ltv:0.70,lrate:0.075,ltc:0.60,crate:0.08,
+  gpAcq:0.01,gpDisp:0.01,coinv:0,h1:0.08,g1:0,h2:0.10,g2:1,h3:0.25,g3:0.20,g4:0.30};
+// deal-structure presets (waterfall hurdles are project-equity IRRs; g = GP share of each band)
+const WF={house:{gpAcq:0.01,gpDisp:0.01,coinv:0,h1:0.08,g1:0,h2:0.10,g2:1,h3:0.25,g3:0.20,g4:0.30},
+  solo:{gpAcq:0,gpDisp:0,coinv:0,h1:0,g1:0,h2:0,g2:0,h3:0,g3:0,g4:0},
+  simple:{gpAcq:0.01,gpDisp:0.01,coinv:0.10,h1:0.08,g1:0,h2:0.08,g2:0,h3:0.08,g3:0,g4:0.20}};
 function irrM(cf){let lo=-0.95,hi=1.0;const f=r=>{let s=0;for(let k=0;k<cf.length;k++)s+=cf[k]/Math.pow(1+r,k);return s};
   if(f(lo)<0)return -1; if(f(hi)>0)return Math.pow(1+hi,12)-1;
   for(let i=0;i<200;i++){const m=(lo+hi)/2;if(f(m)>0)lo=m;else hi=m}return Math.pow(1+(lo+hi)/2,12)-1}
@@ -341,10 +348,10 @@ function engine(I,opt){opt=opt||{};const F=FIX,tax=!!opt.tax,X=!!I.extras;
     if(m>=H){rec[m]+=V*(down+cstr+hand)}else{rec[m]+=V*down;rec[H]+=V*hand;const n=H-1-m;
       if(n>0){for(let k=m+1;k<=H-1;k++)rec[k]+=V*cstr/n}else rec[H]+=V*cstr}
     if(ph>0){const s0=Math.max(m,H);for(let k=1;k<=F.phMonths;k++)rec[s0+k]+=V*ph/F.phMonths}
-    cSales[m]+=V*I.com;cGP[m]+=V*F.gpDisp}
+    cSales[m]+=V*I.com;cGP[m]+=V*I.gpDisp}
   const mk=gdv*I.mkt;cMkt[Math.max(0,L-1)]+=mk*0.20;cMkt[L]+=mk*0.15;for(let m=L;m<=lastSale;m++)cMkt[m]+=mk*(1-F.launchMkt)/S;
   // land
-  const landP=I.land*F.plot,dldA=landP*F.dld,lfeeA=landP*I.lfee,gpAcqA=(landP+dldA)*F.gpAcq;
+  const landP=I.land*F.plot,dldA=landP*F.dld,lfeeA=landP*I.lfee,gpAcqA=(landP+dldA)*I.gpAcq;
   cLand[0]+=landP+dldA+lfeeA;cGP[0]+=gpAcqA;
   // existing rent until vacant possession
   for(let m=1;m<=VP;m++)inc[m]+=I.rent/12;
@@ -392,27 +399,31 @@ function engine(I,opt){opt=opt||{};const F=FIX,tax=!!opt.tax,X=!!I.extras;
   const cf=eq.map((e,i)=>dist[i]-e);const totEq=eq.reduce((a,b)=>a+b,0),totDist=dist.reduce((a,b)=>a+b,0);
   const profit=totDist-totEq,irr=irrM(cf);
   let out=0,peak=0;for(let m=0;m<=T;m++){out+=eq[m]-dist[m];if(out>peak)peak=out}
-  // house waterfall: 8% pref, 8-10% band to GP, 80/20 to 25%, 70/30 above; monthly compounding on actual flows
-  const rs=[0.08,0.10,0.25].map(r=>Math.pow(1+r,1/12)-1);let B=[0,0,0];const lpcf=z();let t1=0,t2=0,t3=0,t4=0;
-  for(let m=0;m<=T;m++){B=B.map((b,i)=>b*(1+rs[i])+eq[m]);let D=dist[m];lpcf[m]=-eq[m];
-    if(D>0){const a1=Math.min(D,B[0]);const a2=Math.min(D-a1,Math.max(B[1]-a1,0));const a3=Math.min(D-a1-a2,Math.max(B[2]-a1-a2,0));const a4=D-a1-a2-a3;
-      t1+=a1;t2+=a2;t3+=a3;t4+=a4;lpcf[m]+=a1+0.8*a3+0.7*a4;B=B.map(b=>Math.max(0,b-D))}}
-  const promote=Math.min(Math.max(profit,0),t2+0.2*t3+0.3*t4),lpProfit=profit-promote,lpIrr=irrM(lpcf);
+  // flexible waterfall: capital back first (pro rata), then up to three hurdle bands and a residual band;
+  // hurdles are IRRs on project equity, compounded monthly on actual contributions and distributions
+  const hs=[0,I.h1,Math.max(I.h1,I.h2),Math.max(I.h1,I.h2,I.h3)],gs=[0,I.g1,I.g2,I.g3,I.g4];
+  const rs=hs.map(r=>Math.pow(1+r,1/12)-1);let B=[0,0,0,0];const lpcf=z(),band=[0,0,0,0,0],gpBand=[0,0,0,0,0];
+  for(let m=0;m<=T;m++){B=B.map((b,i)=>b*(1+rs[i])+eq[m]);const D=dist[m];lpcf[m]=-eq[m];
+    if(D>0){let used=0;for(let i=0;i<5;i++){const a=i<4?Math.min(D-used,Math.max(B[i]-used,0)):D-used;
+      band[i]+=a;gpBand[i]+=a*gs[i];lpcf[m]+=a*(1-gs[i]);used+=a}B=B.map(b=>Math.max(0,b-D))}}
+  const promote=Math.min(Math.max(profit,0),gpBand.reduce((a,b)=>a+b,0)),lpProfit=profit-promote,lpIrr=irrM(lpcf);
+  const t1=band[0]+band[1],t2=band[2],t3=band[3],t4=band[4];
   const sum=a=>a.reduce((x,y)=>x+y,0);const sumTo=(a,k)=>{let s=0;for(let m=0;m<=Math.min(k,T);m++)s+=a[m];return s};
-  const gpFees=gpAcqA+gdv*F.gpDisp;
+  const gpFees=gpAcqA+gdv*I.gpDisp;
   return {VP,CS,CE,H,L,lastSale,T,tiers,gdv,mktArea,hBldg,hClub,hInfra,hLand,hDemo,cont,hcc,demoT,landP,dldA,lfeeA,gpAcqA,gpFees,
     desA,pmA,authA,reraA,dlpA,unsoldA,mk,com:gdv*I.com,ovhT:I.ovh*H/12,totInc,totCost,loanL,limC,arrL,arrC,drawnC:sum(drawC),
     interest:intPaid,tax:taxPaid,profit,irr,totEq,totDist,peak,mult:totEq>0?totDist/totEq:0,
     margin:profit/gdv,poc:profit/(totCost+intPaid+arrL+arrC+taxPaid-totInc),plan:[down,cstr,hand,ph],
     rec,inc,cost,cLand,cHard,cSoft,cSales,cMkt,cOther,cGP,eq,dist,cashA,debtBal,prog,sold,cf,
     t1,t2,t3,t4,promote,lpProfit,lpIrr,lpMult:totEq>0?(totEq+lpProfit)/totEq:0,landPctGdv:landP/gdv,
-    deposit:depositAmt,recAtH:sumTo(rec,H),soldAtH:sumTo(sold,H),gpTotal:promote+gpFees};
+    deposit:depositAmt,recAtH:sumTo(rec,H),soldAtH:sumTo(sold,H),gpTotal:promote+gpFees,band,gpBand,hs,gs,
+    invEq:totEq*(1-I.coinv),invProfit:lpProfit*(1-I.coinv),gpEq:totEq*I.coinv,gpCo:lpProfit*I.coinv,gpAll:promote+gpFees+lpProfit*I.coinv};
 }
 function solve(I,key,lo,hi,target,metric,opt){
   const f=v=>{const J=Object.assign({},I);J[key]=v;return metric(engine(J,opt))-target};
   let a=lo,b=hi,fa=f(a),fb=f(b);if(fa*fb>0)return null;
   for(let i=0;i<60;i++){const m=(a+b)/2,fm=f(m);if(fa*fm<=0){b=m;fb=fm}else{a=m;fa=fm}}return (a+b)/2}
-if(typeof module!=='undefined')module.exports={engine,BASE,FIX,solve,irrM};
+if(typeof module!=='undefined')module.exports={engine,BASE,FIX,WF,solve,irrM};
 
 </script>
 <script>
@@ -441,7 +452,7 @@ const CTRL=[
  {k:'rate',l:'Construction incl. fit-out and furniture, per sq ft GFA',min:800,max:2400,step:25,f:v=>A(v)+SQ,h:r=>'all tiers · buildings '+M(r.hBldg,0)},
  {k:'cont',l:'Contingency',min:0,max:0.15,step:0.005,f:v=>P(v),h:r=>'AED '+M(r.cont,1)+(I.extras?' on all works':' on buildings only')},
  {seg:'extras'},
- {k:'com',l:'Broker commission on sales',min:0.01,max:0.05,step:0.0025,f:v=>P(v,2),h:r=>'AED '+M(r.com,1)+' · plus 1% GP disposition fee'},
+ {k:'com',l:'Broker commission on sales',min:0.01,max:0.05,step:0.0025,f:v=>P(v,2),h:r=>'AED '+M(r.com,1)+(I.gpDisp>0?' · plus '+P(I.gpDisp,2)+' GP disposition fee':'')},
  {k:'mkt',l:'Marketing, % of GDV',min:0.01,max:0.04,step:0.0025,f:v=>P(v,2),h:r=>'AED '+M(r.mk,1)+' incl. sales gallery and launch'},
  {k:'ovh',l:'Developer overhead, per year',min:5e6,max:30e6,step:1e6,f:v=>'AED '+M(v,0),h:r=>'AED '+M(r.ovhT,1)+' to handover'},
  {g:'Programme, months'},
@@ -465,11 +476,26 @@ const CTRL=[
  {k:'lrate',l:'Land loan rate',min:0.05,max:0.12,step:0.0025,f:v=>P(v,2),h:r=>I.debt?'simple, accrued to handover':'off',d:1},
  {k:'ltc',l:'Construction facility, % of construction',min:0,max:0.7,step:0.05,f:v=>P(v,0),h:r=>I.debt?'limit '+M(r.limC,0)+' · drawn '+M(r.drawnC,0):'off',d:1},
  {k:'crate',l:'Construction facility rate',min:0.05,max:0.12,step:0.0025,f:v=>P(v,2),h:r=>I.debt?'interest and fees '+M(r.interest+r.arrL+r.arrC,0):'off',d:1},
+ {g:'Deal structure'},
+ {seg:'wf'},
+ {k:'coinv',l:'GP co-investment, % of equity',min:0,max:0.5,step:0.05,f:v=>P(v,0),h:r=>r.gpEq>0?'GP '+M(r.gpEq,0)+' · LP investor '+M(r.invEq,0):'LP investor funds all '+M(r.totEq,0)},
+ {k:'gpAcq',l:'GP acquisition fee, % of land and DLD',min:0,max:0.03,step:0.0025,f:v=>v?P(v,2):'none',h:r=>r.gpAcqA>0?'AED '+M(r.gpAcqA,1)+' at land transfer':'no acquisition fee'},
+ {k:'gpDisp',l:'GP disposition fee, % of GDV',min:0,max:0.03,step:0.0025,f:v=>v?P(v,2):'none',h:r=>I.gpDisp>0?'AED '+M(r.gdv*I.gpDisp,1)+' at sale':'no disposition fee'},
+ {seg:'bands'},
 ];
+const WFK=['h1','g1','h2','g2','h3','g3','g4'];
+const wfName=()=>{for(const k of Object.keys(WF)){if(['gpAcq','gpDisp','coinv'].concat(WFK).every(x=>Math.abs(I[x]-WF[k][x])<1e-9))return k}return null};
 function buildControls(){let h='';CTRL.forEach(c=>{
   if(c.g)h+=`<div class="grp">${c.g}</div>`;
   else if(c.seg==='extras')h+=`<div class="seg" role="radiogroup" aria-label="Cost lines"><button type="button" class="segb" id="ex0">Core cost lines</button><button type="button" class="segb" id="ex1">Add authority, RERA, defects</button></div>`;
   else if(c.seg==='lock')h+=`<div class="seg" role="radiogroup" aria-label="Deposit"><button type="button" class="segb" id="dl0">Deposit funds works</button><button type="button" class="segb" id="dl1">Locked to handover</button></div>`;
+  else if(c.seg==='wf')h+=`<div class="seg" role="radiogroup" aria-label="Deal structure preset"><button type="button" class="segb" id="wf_house">House terms</button><button type="button" class="segb" id="wf_simple">8% / 80-20</button><button type="button" class="segb" id="wf_solo">No GP</button></div><div class="h" id="wf_note" style="margin-top:5px;font-size:11px"></div>`;
+  else if(c.seg==='bands')h+=`<div class="wfg" role="group" aria-label="Waterfall bands"><div class="wfh"><span>Band</span><span>Up to IRR</span><span>GP share</span></div>
+   <div class="wfr"><span>1</span><label><input type="number" id="n_h1" min="0" max="100" step="0.5" aria-label="Band 1 hurdle IRR, %"> %</label><label><input type="number" id="n_g1" min="0" max="100" step="5" aria-label="Band 1 GP share, %"> %</label></div>
+   <div class="wfr"><span>2</span><label><input type="number" id="n_h2" min="0" max="100" step="0.5" aria-label="Band 2 hurdle IRR, %"> %</label><label><input type="number" id="n_g2" min="0" max="100" step="5" aria-label="Band 2 GP share, %"> %</label></div>
+   <div class="wfr"><span>3</span><label><input type="number" id="n_h3" min="0" max="100" step="0.5" aria-label="Band 3 hurdle IRR, %"> %</label><label><input type="number" id="n_g3" min="0" max="100" step="5" aria-label="Band 3 GP share, %"> %</label></div>
+   <div class="wfr"><span>Above</span><span class="mut">all the rest</span><label><input type="number" id="n_g4" min="0" max="100" step="5" aria-label="GP share above the last hurdle, %"> %</label></div>
+   <div class="h" id="wf_desc"></div></div>`;
   else if(c.seg==='debt')h+=`<div class="seg" role="radiogroup" aria-label="Financing"><button type="button" class="segb" id="fs0">All equity</button><button type="button" class="segb" id="fs1">Land and construction debt</button></div>`;
   else h+=`<div class="inp${c.d?' dbt':''}" id="w_${c.k}"><label for="i_${c.k}">${c.l} <output id="o_${c.k}"></output></label><input type="range" id="i_${c.k}" min="${c.min}" max="${c.max}" step="${c.step}" value="${I[c.k]}"><div class="h" id="h_${c.k}"></div></div>`});
   $('controls').innerHTML=h;
@@ -477,7 +503,11 @@ function buildControls(){let h='';CTRL.forEach(c=>{
   $('ex0').addEventListener('click',()=>{I.extras=0;render()});$('ex1').addEventListener('click',()=>{I.extras=1;render()});
   $('dl0').addEventListener('click',()=>{I.depLock=0;render()});$('dl1').addEventListener('click',()=>{I.depLock=1;render()});
   $('fs0').addEventListener('click',()=>{I.debt=0;render()});$('fs1').addEventListener('click',()=>{I.debt=1;render()});
-  const load=()=>{I=Object.assign({},BASE);CTRL.forEach(c=>{if(c.k)$('i_'+c.k).value=I[c.k]});render()};
+  const syncWf=()=>{WFK.forEach(k=>{$('n_'+k).value=+(I[k]*100).toFixed(2)});['coinv','gpAcq','gpDisp'].forEach(k=>{$('i_'+k).value=I[k]})};
+  Object.keys(WF).forEach(k=>$('wf_'+k).addEventListener('click',()=>{Object.assign(I,WF[k]);syncWf();render()}));
+  WFK.forEach(k=>$('n_'+k).addEventListener('input',e=>{const v=parseFloat(e.target.value);if(isNaN(v))return;I[k]=Math.min(1,Math.max(0,v/100));render()}));
+  syncWf();
+  const load=()=>{I=Object.assign({},BASE);CTRL.forEach(c=>{if(c.k)$('i_'+c.k).value=I[c.k]});syncWf();render()};
   $('reset').addEventListener('click',()=>load());
 }
 function heatCls(v,vals,floor,invert){const ok=vals.filter(x=>invert?true:x>=floor);if(!invert&&v<floor)return -1;
@@ -499,10 +529,13 @@ function render(){
   $('ex0').classList.toggle('on',!I.extras);$('ex1').classList.toggle('on',!!I.extras);
   $('dl0').classList.toggle('on',!I.depLock);$('dl1').classList.toggle('on',!!I.depLock);
   $('fs0').classList.toggle('on',!I.debt);$('fs1').classList.toggle('on',!!I.debt);
+  {const w=wfName();Object.keys(WF).forEach(k=>$('wf_'+k).classList.toggle('on',w===k));
+   $('wf_note').textContent=w==='house'?'Palm & Peak house terms':w==='simple'?'8% preferred, then 80 / 20; GP co-invests 10%':w==='solo'?'One investor runs the project: no promote, no GP fees':'Custom terms';
+   $('wf_desc').textContent=wfText(r);}
   const be=solve(I,'p2',500,15000,0,x=>x.profit),tc=r.totCost+r.interest+r.arrL+r.arrC-r.totInc;
   const beBlend=be?be*r.gdv/r.mktArea/I.p2:null;
   $('k_profit').textContent=M(r.profit,0);$('k_profit_s').textContent=P(r.margin)+' of GDV · '+P(r.poc)+' on cost'+(I.debt?' · after '+M(r.interest+r.arrL+r.arrC,0)+' of debt cost':'');
-  $('k_irr').textContent=irrF(r.irr);$('k_irr_s').textContent='pre-tax, monthly flows · LP '+irrF(r.lpIrr)+(I.debt?' · unlevered '+irrF(ru.irr):' · levered '+irrF(rl.irr));
+  $('k_irr').textContent=irrF(r.irr);$('k_irr_s').textContent='pre-tax, monthly flows'+(r.promote>0?' · LP '+irrF(r.lpIrr):'')+(I.debt?' · unlevered '+irrF(ru.irr):' · levered '+irrF(rl.irr));
   $('k_eq').textContent=M(r.peak,0);$('k_eq_s').textContent='land and fees '+M(r.landP+r.dldA+r.lfeeA-r.loanL,0)+' in month 0'+(I.debt?' net of the land loan':'')+' · '+P(r.peak/tc,0)+' of all costs';
   $('k_mult').textContent=X(r.mult);$('k_mult_s').textContent='first distribution '+cal(r.H)+' (month '+r.H+') · last '+cal(r.T);
   $('k_be').textContent=be?A(beBlend):'n/a';$('k_be_s').textContent=be?'blended per sq ft marketed · '+P(r.gdv/r.mktArea/beBlend-1)+' headroom to the current '+A(r.gdv/r.mktArea):'';
@@ -527,7 +560,7 @@ function render(){
   ${row('Land',r.landP)}${row('DLD 4%'+(I.lfee>0?' and brokerage '+P(I.lfee,1):''),r.dldA+r.lfeeA)}
   ${row('Demolition and site clearing',r.demoT)}${row('Residences, shell, core and fit-out',r.hBldg)}${row('Clubhouse and amenities',r.hClub)}${row('Infrastructure and landscaping',r.hInfra+r.hLand)}${row('Contingency '+P(I.cont),r.cont)}
   ${row('Design and master planning (6%)',r.desA)}${row('Project management (5%)',r.pmA)}${I.extras?row('Authority fees, connections, RERA, escrow, legal',r.authA+r.reraA):''}${row('Developer overhead',r.ovhT)}
-  ${row('Broker commission '+P(I.com,1),r.com)}${row('Marketing '+P(I.mkt,1),r.mk)}${row('GP fees (acquisition 1%, disposition 1%)',r.gpFees)}${I.extras?row('Defects reserve, service charge on unsold stock',r.dlpA+r.unsoldA):''}
+  ${row('Broker commission '+P(I.com,1),r.com)}${row('Marketing '+P(I.mkt,1),r.mk)}${(r.gpFees>0?row('GP fees (acquisition '+P(I.gpAcq,2)+', disposition '+P(I.gpDisp,2)+')',r.gpFees):'')}${I.extras?row('Defects reserve, service charge on unsold stock',r.dlpA+r.unsoldA):''}
   ${I.debt?row('Interest and arrangement fees',r.interest+r.arrL+r.arrC):''}${r.totInc>0?row('Less existing rent collected',-r.totInc):''}
   ${row('Total cost',tc,'total')}${row('Gross revenue (GDV)',r.gdv)}${row('Profit to equity, pre-tax',r.profit,'total')}</tbody>
   <thead><tr><th>Sources at peak</th><th>AED</th><th></th><th>% cost</th></tr></thead><tbody>
@@ -535,21 +568,26 @@ function render(){
   <tr><td>Land loan</td><td>${I.debt?M(r.loanL,1):'-'}</td><td></td><td>${I.debt?P(r.loanL/tc):'-'}</td></tr>
   <tr><td>Construction facility drawn</td><td>${I.debt?M(r.drawnC,1):'-'}</td><td></td><td>${I.debt?P(r.drawnC/tc):'-'}</td></tr>
   <tr><td>Buyer payments through escrow and other</td><td>${M(tc-r.peak-(I.debt?r.loanL+r.drawnC:0),1)}</td><td></td><td>${P((tc-r.peak-(I.debt?r.loanL+r.drawnC:0))/tc)}</td></tr></tbody>`;
-  const pref=Math.max(0,r.t1-r.totEq);
-  $('t_ret').innerHTML=`<thead><tr><th>Returns</th><th>Project equity</th><th>LP</th></tr></thead><tbody>
-  <tr><td>Profit, pre-tax</td><td>${M(r.profit,1)}</td><td>${M(r.lpProfit,1)}</td></tr>
-  <tr><td>IRR, monthly flows</td><td>${irrF(r.irr)}</td><td>${irrF(r.lpIrr)}</td></tr>
-  <tr><td>Equity multiple</td><td>${X(r.mult)}</td><td>${X(r.lpMult)}</td></tr>
-  <tr><td>Margin on GDV / return on cost</td><td>${P(r.margin)} / ${P(r.poc)}</td><td></td></tr>
-  <tr><td>${I.debt?'All equity: IRR and profit':'With debt: IRR and profit'}</td><td>${I.debt?irrF(ru.irr)+' · '+M(ru.profit,0):irrF(rl.irr)+' · '+M(rl.profit,0)}</td><td></td></tr>
-  <tr><td>Corporate tax 9%, for reference</td><td>${M(-rt.tax,1)}</td><td></td></tr>
-  <tr><td>After-tax profit and IRR</td><td>${M(rt.profit,0)} · ${irrF(rt.irr)}</td><td></td></tr>
-  <tr><td>Total equity contributed</td><td>${M(r.totEq,1)}</td><td></td></tr>
-  <tr><td>Return of capital</td><td>${M(Math.min(r.t1,r.totEq),1)}</td><td>${M(Math.min(r.t1,r.totEq),1)}</td></tr>
-  <tr><td>Tier 1: 8% preferred, 100% LP</td><td>${M(pref,1)}</td><td>${M(pref,1)}</td></tr>
-  <tr><td>Tier 3: 10 to 25%, 80 / 20</td><td>${M(r.t3,1)}</td><td>${M(r.t3*0.8,1)}</td></tr>
-  <tr><td>Tier 4: above 25%, 70 / 30</td><td>${M(r.t4,1)}</td><td>${M(r.t4*0.7,1)}</td></tr>
-  <tr class="total"><td>LP share of profit</td><td></td><td>${r.profit>0?P(r.lpProfit/r.profit):'-'}</td></tr></tbody>`;
+  const hasGP=r.gpAll>0.5||r.gpEq>0.5,c=I.coinv;
+  let wr='';wfBands(r).forEach(bd=>{wr+=`<tr><td>${bd.l}</td><td>${M(bd.v,1)}</td><td>${M(bd.v*(1-bd.g),1)}</td><td>${bd.g>0?M(bd.v*bd.g,1):'-'}</td></tr>`});
+  $('t_ret').innerHTML=`<thead><tr><th>Returns</th><th>Project equity</th><th>LP investor</th><th>GP</th></tr></thead><tbody>
+  <tr><td>Equity contributed</td><td>${M(r.totEq,1)}</td><td>${M(r.invEq,1)}</td><td>${r.gpEq>0?M(r.gpEq,1):'-'}</td></tr>
+  <tr><td>Profit, pre-tax</td><td>${M(r.profit,1)}</td><td>${M(r.invProfit,1)}</td><td>${hasGP?M(r.gpAll,1):'-'}</td></tr>
+  <tr><td>IRR, monthly flows</td><td>${irrF(r.irr)}</td><td>${irrF(r.lpIrr)}</td><td></td></tr>
+  <tr><td>Equity multiple</td><td>${X(r.mult)}</td><td>${X(r.lpMult)}</td><td></td></tr>
+  <tr><td>Share of value created<sup>*</sup></td><td>100%</td><td>${r.profit>0?P(r.invProfit/(r.profit+r.gpFees)):'-'}</td><td>${r.profit>0&&hasGP?P(r.gpAll/(r.profit+r.gpFees)):'-'}</td></tr>
+  <tr><td>Margin on GDV / return on cost</td><td>${P(r.margin)} / ${P(r.poc)}</td><td></td><td></td></tr>
+  <tr><td>${I.debt?'All equity: IRR and profit':'With debt: IRR and profit'}</td><td>${I.debt?irrF(ru.irr)+' · '+M(ru.profit,0):irrF(rl.irr)+' · '+M(rl.profit,0)}</td><td></td><td></td></tr>
+  <tr><td>Corporate tax 9%, for reference</td><td>${M(-rt.tax,1)}</td><td></td><td></td></tr>
+  <tr><td>After-tax profit and IRR</td><td>${M(rt.profit,0)} · ${irrF(rt.irr)}</td><td></td><td></td></tr></tbody>
+  <thead><tr><th>Waterfall</th><th>Distributed</th><th>LP class</th><th>GP promote</th></tr></thead><tbody>${wr}
+  <tr class="total"><td>Total distributions</td><td>${M(r.totDist,1)}</td><td>${M(r.totDist-r.promote,1)}</td><td>${r.promote>0?M(r.promote,1):'-'}</td></tr></tbody>
+  ${hasGP?`<thead><tr><th>GP economics</th><th>AED</th><th>% of profit</th><th></th></tr></thead><tbody>
+  <tr><td>Promote</td><td>${M(r.promote,1)}</td><td>${r.profit>0?P(r.promote/r.profit):'-'}</td><td></td></tr>
+  <tr><td>Fees, paid as project costs</td><td>${M(r.gpFees,1)}</td><td></td><td></td></tr>
+  <tr><td>Return on co-investment (${P(c,0)} of equity)</td><td>${M(r.gpCo,1)}</td><td>${r.profit>0?P(r.gpCo/r.profit):'-'}</td><td></td></tr>
+  <tr class="total"><td>GP total</td><td>${M(r.gpAll,1)}</td><td></td><td></td></tr></tbody>`:''}`;
+  $('n_ret').textContent=hasGP?(c>0?'LP class is all equity before promote; the LP investor holds '+P(1-c,0)+' of it and the GP co-investment '+P(c,0)+'. ':'LP class is all equity before promote; with no GP co-investment the LP investor holds all of it. ')+'* Value created is project profit plus the GP fees, which the budget already deducts as costs; the LP and GP shares add up to 100%.':'No GP: one investor funds and runs the project, keeps 100% of the profit and bears the developer overhead and the other costs in the budget.';
   escrowTable(r);charts(r);cfTable(r);
   $('o_pace').textContent=nf(46/I.sales,1);
   // sensitivities
@@ -636,6 +674,13 @@ function cfTable(r){const q=[];for(let m=0;m<=r.T;m++){const i=m===0?0:Math.floo
   ${line('Buyer collections and rent',o=>o.rec)}${line('Land, DLD, brokerage',o=>-o.land)}${line('Demolition and construction',o=>-o.hard)}${line('Design, PM, authority fees',o=>-o.soft)}${line('Commission, marketing, GP fees',o=>-o.sales)}${line('Overhead, reserves, service charge',o=>-o.oth)}
   ${line('Equity contributions',o=>o.eq,'sub')}${line('Distributions to equity',o=>-o.dist,'sub')}${bal('Project cash, end of quarter',o=>o.cash)}${I.debt?bal('Debt with accrued interest, end',o=>-o.debt):''}</tbody>`}
 buildControls();render();
+
+function pp(v){return +(v*100).toFixed(2)+'%'}
+function wfBands(r){const hs=r.hs,gs=r.gs,out=[{l:'Return of capital',v:r.band[0],g:0}];let prev=0;
+  for(let i=1;i<4;i++){if(hs[i]>prev+1e-9||r.band[i]>0.5){out.push({l:(prev>0?pp(prev)+' to ':'Up to ')+pp(hs[i])+' IRR · GP '+pp(gs[i]),v:r.band[i],g:gs[i],a:prev,b:hs[i]});prev=hs[i]}}
+  out.push({l:(prev>0?'Above '+pp(prev)+' IRR':'All profit')+' · GP '+pp(gs[4]),v:r.band[4],g:gs[4],a:prev,b:null});return out}
+function wfText(r){const b=wfBands(r).slice(1);if(b.every(x=>x.g===0))return 'No promote: 100% of distributions to equity.';
+  return 'Capital back first, then GP takes '+b.map(x=>pp(x.g)+(x.b===null?(x.a>0?' above '+pp(x.a):' of all profit'):(x.a>0?' from '+pp(x.a)+' to '+pp(x.b):' up to '+pp(x.b)))).join(', ')+'.'}
 
 </script>
 </body>
